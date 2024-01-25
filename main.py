@@ -1,13 +1,15 @@
 from fastapi import FastAPI
+from dotenv import load_dotenv
 import stripe
 import os
 
+load_dotenv()
 stripe.api_key = os.environ.get('STRIPE_TEST_API_KEY')
 app = FastAPI()
 
 @app.get("/")
 async def hello():
-  return {"Welcome": "iSell payment API is online", "key": os.environ.get('STRIPE_TEST_API_KEY')}
+  return {"Welcome": "iSell payment API is online", "key": stripe.api_key}
 
 @app.get("/checkout")
 async def checkout(success_url: str, price_id: str):
