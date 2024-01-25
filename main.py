@@ -9,7 +9,7 @@ app = FastAPI()
 
 @app.get("/")
 async def hello():
-  return {"Welcome": "iSell payment API is online", "key": stripe.api_key}
+  return {"Welcome": "iSell payment API is online"}#, "key": stripe.api_key}
 
 @app.get("/checkout")
 async def checkout(success_url: str, price_id: str):
