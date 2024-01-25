@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.get("/")
 async def hello():
-  return {"Welcome": "iSell payment API is online"}
+  return {"Welcome": "iSell payment API is online", "key": os.environ.get('STRIPE_TEST_API_KEY')}
 
 @app.get("/checkout")
 async def checkout(success_url: str, price_id: str):
