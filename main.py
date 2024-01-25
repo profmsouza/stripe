@@ -18,7 +18,7 @@ async def checkout(success_url: str, price_id: str):
       mode="subscription",
     )
     return {"checkout_id": cs.id, "checkout_link": cs.url}
-#http://127.0.0.1:8000/checkout?price_id=price_1Oc7QrDSKSSaBlD0kqjAARHS&success_url=https://app.isell.vip/stripe-test?checkout_id={CHECKOUT_SESSION_ID}
+#https://fastapi-production-32c5.up.railway.app/checkout?price_id=price_1Oc7QrDSKSSaBlD0kqjAARHS&success_url=https://app.isell.vip/stripe-test?checkout_id={CHECKOUT_SESSION_ID}
 
 @app.get("/identification")
 async def identification(checkout_id: str):
@@ -28,10 +28,10 @@ async def identification(checkout_id: str):
     payment_id = ret_cs.payment_method_configuration_details.id
     subscription_id = ret_cs.subscription
     return {"checkout_id": checkout_id, "customer_id": customer_id, "invoice_id": invoice_id, "payment_id": payment_id, "subscription_id": subscription_id}
-#http://127.0.0.1:8000/identification?checkout_id=cs_test_a1a308PcYgupgAmvcRXCpyJAERjCt5BGWUhlOlv9fnXtInPiYQu6dAFsW2
+#https://fastapi-production-32c5.up.railway.app/identification?checkout_id=cs_test_a1a308PcYgupgAmvcRXCpyJAERjCt5BGWUhlOlv9fnXtInPiYQu6dAFsW2
 
 @app.get("/status")
 async def status(sub_id: str):
     sub = stripe.Subscription.retrieve(sub_id)
     return {"status": sub.status}
-#http://127.0.0.1:8000/status?sub_id=sub_1OcSGnDSKSSaBlD0OxYHfWjH
+#https://fastapi-production-32c5.up.railway.app/status?sub_id=sub_1OcSGnDSKSSaBlD0OxYHfWjH
