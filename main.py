@@ -3,8 +3,7 @@ import stripe
 import os
 
 #stripe.api_key = os.environ.get('STRIPE_API_KEY')
-stripe.api_key = secrets.STRIPE_API_KEY
-
+stripe.api_key = "sk_test_51LK7e4DSKSSaBlD0ojSAIhSCkeoUJXeyCx9oYm5Fl8qyyUaajImGw2vIJ0J3U0wShiOaJ64aut00ocEvrzcdJpeJ00Yolily5z"
 app = FastAPI()
 
 @app.get("/")
