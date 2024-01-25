@@ -2,7 +2,7 @@ from fastapi import FastAPI
 import stripe
 import os
 
-stripe.api_key = os.environ.get('SK_TEST_KEY')
+stripe.api_key = os.environ.get('STRIPE_API_KEY')
 
 app = FastAPI()
 
