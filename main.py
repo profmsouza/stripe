@@ -36,3 +36,9 @@ async def status(sub_id: str):
     sub = stripe.Subscription.retrieve(sub_id)
     return {"status": sub.status}
 #https://fastapi-production-32c5.up.railway.app/status?sub_id=sub_1OcSGnDSKSSaBlD0OxYHfWjH
+
+@app.get("/cancel")
+async def status(sub_id: str):
+    res = stripe.Subscription.cancel(sub_id)
+    return {"canceled_at": res.canceled_at}
+#https://fastapi-production-32c5.up.railway.app/cancel?sub_id=sub_1OcSGnDSKSSaBlD0OxYHfWjH
