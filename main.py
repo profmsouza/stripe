@@ -9,17 +9,17 @@ app = FastAPI()
 
 @app.get("/")
 async def hello():
-  return {"Welcome": "iSell payment API is online"}#, "key": stripe.api_key}
+  return {"Welcome": "iSell payment API is online"}
 
 @app.get("/checkout")
-async def checkout(success_url: str, price_id: str):
+async def checkout(success_url_encoded: str, price_id: str):
     cs = stripe.checkout.Session.create(
-      success_url=success_url,
+      success_url=success_url_encoded,
       line_items=[{"price": price_id, "quantity": 1}],
       mode="subscription",
     )
     return {"checkout_id": cs.id, "checkout_link": cs.url}
-#https://fastapi-production-32c5.up.railway.app/checkout?price_id=price_1Oc7QrDSKSSaBlD0kqjAARHS&success_url=https://app.isell.vip/stripe-test?checkout_id={CHECKOUT_SESSION_ID}
+#https://fastapi-production-32c5.up.railway.app/checkout?price_id=price_1Oc7QrDSKSSaBlD0kqjAARHS&success_url_encoded=https://app.isell.vip/stripe-test%3Fcar_id={{car_id}}%26checkout_id={CHECKOUT_SESSION_ID}
 
 @app.get("/identification")
 async def identification(checkout_id: str):
